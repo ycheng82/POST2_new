@@ -20,7 +20,7 @@ public class ProductReader {
                              // so read in the next line
     private String nextLine;
     
-    ArrayList<String> productArray = new ArrayList<String>();
+    ArrayList<ProductSpec> productArray = new ArrayList<ProductSpec>();
     
     
     
@@ -33,7 +33,7 @@ public class ProductReader {
     }
     
     ProductSpec getNextProduct(){
-        ProductSpec something = new ProductSpec();
+        //ProductSpec something = new ProductSpec();
         return something;
     }
     
