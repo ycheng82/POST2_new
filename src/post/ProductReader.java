@@ -5,6 +5,8 @@
 package post;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -14,19 +16,25 @@ import java.util.ArrayList;
 public class ProductReader {
     
     private BufferedReader source;
-    private int lineno = 0,   // line number of source program
-        position;     // position of last character processed
-    private boolean isPriorEndLine = true;  // if true then last character read was newline
-                             // so read in the next line
-    private String nextLine;
     
     ArrayList<ProductSpec> productArray = new ArrayList<ProductSpec>();
     
     
     
-    public ProductReader(String productFile){
-        
+    public ProductReader(String productFile)throws IOException {
+    	//System.out.println( "Source file: " + productFile );
+    	//System.out.println( "user.dir: " + System.getProperty("user.dir"));
+        source = new BufferedReader(new FileReader(productFile));
+        source.
     }
+
+    void close() {
+        try {
+            source.close();
+        } catch (Exception e) {}
+    }
+        
+    
     
     boolean hasMoreProducts(){
         return true;
