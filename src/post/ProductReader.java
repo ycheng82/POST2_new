@@ -41,8 +41,8 @@ public class ProductReader {
     }
     
     ProductSpec getNextProduct(){
-        //ProductSpec something = new ProductSpec();
-        return something;
+        ProductSpec productSpec = new ProductSpec("0000", "Giraffe", 10.00);
+        return productSpec;
     }
     
 }

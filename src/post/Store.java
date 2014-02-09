@@ -14,12 +14,8 @@ public class Store {
     //Products by UPC code
     static HashMap productCatalog = new HashMap();
     
-    //Product Textfile
-    String productFile;
-    
-    public Store (){
-        
-        ProductReader initProducts = new ProductReader(productFile);
+    public Store (String catalogueFileName){
+        ProductReader initProducts = new ProductReader(catalogueFileName);
         
     }
     
