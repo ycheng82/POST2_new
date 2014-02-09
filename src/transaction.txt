@@ -1,0 +1,14 @@
+Mike
+1234     giraffe
+4567     skunk
+4326     computer
+<CREDIT 57312>
+
+Jon
+1234	computer
+<CHECK $300.05>
+
+Anthony
+4567	skunk
+1234	giraffe
+<CHECK $20.30>

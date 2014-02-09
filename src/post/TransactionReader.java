@@ -1,27 +1,36 @@
-class TransactionReader {
+package post;
 
-	TransactionReader(Store store, String transactionFile) {
-		String line = null;
-		Vector<String> transactions = new Vector<String>(100);
-		
-		BufferedReader buffer = new BufferedReader(new FileReader(transactionFile));
-		
-		while((line = buffer.readLine()) != null) {
-			transactions.add(line);
-		}
-		
-		buffer.close();
-	}
-	
-	boolean hasMoreTransactions() {
-		if() {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	Transaction getNextTransaction() {
-		
-	}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Vector;
+
+public class TransactionReader {
+    
+    private BufferedReader source;
+
+    TransactionReader(Store store, String transactionFile) throws IOException {
+        String line = null;
+        Vector<String> transactions = new Vector<String>(100);
+
+        source = new BufferedReader(new FileReader(transactionFile));
+
+        while((line = source.readLine()) != null) {
+            transactions.add(line);
+        }
+
+        source.close();
+    }
+
+    boolean hasMoreTransactions() {
+        if() {
+                return true;
+        } else {
+                return false;
+        }
+    }
+
+    Transaction getNextTransaction() {
+
+    }
 }
