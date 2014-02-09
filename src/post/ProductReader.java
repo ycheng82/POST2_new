@@ -25,7 +25,6 @@ public class ProductReader {
     	//System.out.println( "Source file: " + productFile );
     	//System.out.println( "user.dir: " + System.getProperty("user.dir"));
         source = new BufferedReader(new FileReader(productFile));
-        source.
     }
 
     void close() {

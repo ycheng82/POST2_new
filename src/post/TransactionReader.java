@@ -40,7 +40,7 @@ public class TransactionReader {
     }
 
     Transaction getNextTransaction() {
-        Transaction something;
-        return something;
+        Transaction transaction = new Transaction();
+        return transaction;
     }
 }

@@ -14,7 +14,7 @@ public class Transaction {
     
     public Transaction() {
         TransactionHeader header;
-        TransactionItem transItems[100];
+        TransactionItem[] transItems = new TransactionItem[100];
         int numTransItems;
         Payment payment;
     }
