@@ -7,7 +7,8 @@ package post;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -15,22 +16,67 @@ import java.util.ArrayList;
  */
 public class ProductReader {
     
-    private BufferedReader source;
+    private static HashMap productCatalog;
     
-    ArrayList<ProductSpec> productArray = new ArrayList<ProductSpec>();
+    private static StringTokenizer productTokens;
+    
+    private static BufferedReader source;
+    
+    private static String UPC, Description, createPrice;
+    private static double Price;
     
     
     
     public ProductReader(String productFile)throws IOException {
-    	//System.out.println( "Source file: " + productFile );
-    	//System.out.println( "user.dir: " + System.getProperty("user.dir"));
+        
         source = new BufferedReader(new FileReader(productFile));
+        productCatalog = new HashMap<String, ProductSpec>();
+        
+    }
+    
+    public static HashMap getCatalog(String fileName) throws IOException{
+        
+        ProductReader read = new ProductReader(fileName);
+        
+        ProductReader.init();
+        ProductReader.close();
+        
+        return productCatalog;
+        
+    }
+    
+    public static void main(String[] args) throws IOException{
+        
+        HashMap catalog = ProductReader.getCatalog("productCatalog.txt");
+        
+        System.out.println("It worked");
+        
     }
 
-    void close() {
+    static void close() {
+        
         try {
             source.close();
         } catch (Exception e) {}
+        
+    }
+    
+    static void init() throws IOException{
+        
+        String newItem;
+        
+        while((newItem = source.readLine()) != null){
+            
+            productTokens = new StringTokenizer(newItem);
+            
+            UPC = productTokens.nextToken();
+            Description = productTokens.nextToken();
+            createPrice = productTokens.nextToken();
+            Price = Double.parseDouble(createPrice);
+            
+            productCatalog.put(UPC, new ProductSpec(UPC,Description,Price));
+        }
+        
     }
         
     
