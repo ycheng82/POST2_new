@@ -12,11 +12,31 @@ package post;
  */
 public class TransactionItem {
     
-    /**
-     * @Author Michael Yu
-     * @return Number of items in transaction
-     */
-    public int getNumItems() {
-        return 0;
+    private int quantity;
+    private int upc;
+    private int unitPrice;
+    private int extendedPrice;
+    
+    public TransactionItem(int numProduct, int productCode, int productCost) {
+        quantity = numProduct;
+        upc = productCode;
+        unitPrice = productCost;
+        extendedPrice = productCost * quantity;
+    }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public int getUPC() {
+        return upc;
+    }
+    
+    public int getUnitPrice() {
+        return unitPrice;
+    }
+    
+    public int getExtendedPrice() {
+        return extendedPrice;
     }
 }

@@ -11,11 +11,31 @@ package post;
  * @author Michael
  */
 public class Transaction {
+    private TransactionHeader header;
+    private TransactionItem[] transItems;
+    private int numTransItems;
+    private Payment payment;
     
     public Transaction() {
-        TransactionHeader header;
-        TransactionItem[] transItems = new TransactionItem[100];
-        int numTransItems;
-        Payment payment;
+        //header;
+        transItems = new TransactionItem[100];
+        numTransItems = transItems.length;
+        //payment;
+    }
+    
+    public TransactionHeader getTransHeader() {
+        return header;
+    }
+    
+    public TransactionItem[] getTransItems() {
+        return transItems;
+    }
+    
+    public int getNumTransItems() {
+        return numTransItems;
+    }
+    
+    public Payment getPayment() {
+        return payment;
     }
 }
