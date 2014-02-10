@@ -11,5 +11,13 @@ package post;
  * @author Michael
  */
 public class Payment {
+    String ccType;
+    Double amount;
+    String customerName;
     
+    Payment(String ccType, Double amt, String name) {
+        this.ccType = ccType;
+        this.amount = amt;
+        this.customerName = name;
+    }
 }

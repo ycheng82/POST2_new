@@ -13,11 +13,32 @@ import java.util.*;
 public class Store {
     
     //Products by UPC code
-    static HashMap productCatalog = new HashMap();
+    private static HashMap<String,ProductSpec> productCatalog = new HashMap();
+    private ArrayList<Transaction> currentTransactions;
+    private Double totalPayments;
     
-    public Store (String catalogueFileName) throws IOException{
-        ProductReader initProducts = new ProductReader(catalogueFileName);
+    
+    public Store (String catalogueFileName, String managerName) throws IOException{
+        currentTransactions = new ArrayList();
+        productCatalog = ProductReader.getCatalog(catalogueFileName);
         
     }
+    
+    public boolean openPost(String fileName) throws IOException {
+        PostTerminal post = new PostTerminal(this, fileName);
+        return true;
+    }
+    
+    public boolean addTransaction(Transaction transaction) {
+        currentTransactions.add(transaction);
+        return true;
+    }
+    
+    public Double getPrice(String upc) {
+        ProductSpec product = productCatalog.get(upc);
+        return product.getPrice();
+    }
+    
+    
     
 }

@@ -6,28 +6,30 @@
 
 package post;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Michael
  */
 public class Transaction {
     private TransactionHeader header;
-    private TransactionItem[] transItems;
+    private ArrayList<TransactionItem> transItems;
     private int numTransItems;
-    private Payment payment;
+    private String payment;
     
-    public Transaction() {
-        //header;
-        transItems = new TransactionItem[100];
-        numTransItems = transItems.length;
-        //payment;
+    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, 
+            int numItems, String payment) {
+        this.transItems = transItems;
+        this.numTransItems = numItems;
+        this.payment = payment;
     }
     
     public TransactionHeader getTransHeader() {
         return header;
     }
     
-    public TransactionItem[] getTransItems() {
+    public ArrayList<TransactionItem> getTransItems() {
         return transItems;
     }
     
@@ -35,7 +37,7 @@ public class Transaction {
         return numTransItems;
     }
     
-    public Payment getPayment() {
+    public String getPayment() {
         return payment;
     }
 }

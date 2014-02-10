@@ -13,11 +13,11 @@ package post;
 public class TransactionItem {
     
     private int quantity;
-    private int upc;
-    private int unitPrice;
-    private int extendedPrice;
+    private String upc;
+    private double unitPrice;
+    private double extendedPrice;
     
-    public TransactionItem(int numProduct, int productCode, int productCost) {
+    public TransactionItem(int numProduct, String productCode, double productCost) {
         quantity = numProduct;
         upc = productCode;
         unitPrice = productCost;
@@ -28,15 +28,15 @@ public class TransactionItem {
         return quantity;
     }
     
-    public int getUPC() {
+    public String getUPC() {
         return upc;
     }
     
-    public int getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
     
-    public int getExtendedPrice() {
+    public double getExtendedPrice() {
         return extendedPrice;
     }
 }
