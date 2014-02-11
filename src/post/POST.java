@@ -20,7 +20,7 @@ public class POST {
         Store store = new Store("productCatalog.txt", "Anthony", "Ziga");
         ArrayList<Invoice> invoices = store.processTransactionFile("transaction.txt", "Anthony");
         for (Invoice i : invoices) {
-            System.out.println(i.toString());
+            System.out.println("\n\n" + i.toString());
         }
     }
 }
