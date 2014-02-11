@@ -31,7 +31,6 @@ public class PostTerminal {
         Invoice invoice = new Invoice(transaction);
         store.addInvoice(invoice);
         store.addToDailyTotalPayments(transaction.getTotal());
-        System.out.println(invoice.toString());
         return invoice;
     }
     

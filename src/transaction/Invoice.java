@@ -44,9 +44,9 @@ public class Invoice {
     
     @Override
     public String toString() {
-        String invoiceString = "Store: " + this.storeName + "   " 
-                + this.dateTime + "\n\n"
-                + "Customer Name: " + this.customerName + "\n";
+        String invoiceString = "Store: " + this.storeName + "\n\n"
+                + "Customer Name: " + this.customerName + "    " 
+                + this.dateTime + "\n";
         
         invoiceString += String.format("%-22s %5s %22s %22s\n",
                 "Item", "QTY", "UNIT_PRICE", "EXTENDED_PRICE");
