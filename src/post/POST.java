@@ -4,6 +4,7 @@
  */
 package post;
 
+import transaction.Invoice;
 import java.io.IOException;
 import java.util.ArrayList;
 

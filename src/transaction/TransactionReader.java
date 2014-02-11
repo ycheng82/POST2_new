@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 
-package post;
+package transaction;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import post.Store;
+
 
 /**
  *
@@ -66,7 +68,7 @@ public class TransactionReader {
         source.close();
     }
     
-    boolean hasMoreTransactions() {
+    public boolean hasMoreTransactions() {
         if(transactionIndex < (transactions.size())) {
             return true;
         } else {
@@ -83,7 +85,7 @@ public class TransactionReader {
         }
     }
 
-    Transaction getNextTransaction() {
+    public Transaction getNextTransaction() {
         return transactions.get(transactionIndex++);
     }
 }

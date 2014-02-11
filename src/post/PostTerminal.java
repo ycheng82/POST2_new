@@ -6,6 +6,7 @@
 
 package post;
 
+import transaction.*;
 import java.util.ArrayList;
 import java.io.IOException;
 

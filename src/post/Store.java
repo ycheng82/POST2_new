@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
 package post;
+import transaction.Invoice;
+import transaction.Transaction;
+import product.ProductSpec;
+import product.ProductReader;
 import java.io.IOException;
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package post;
+package transaction;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,7 +26,7 @@ public class Invoice {
     
     private Transaction transaction;
     
-    Invoice(Transaction transaction) {
+    public Invoice(Transaction transaction) {
         this.storeName = transaction.getTransHeader().getStoreName();
         this.customerName = transaction.getTransHeader().getcustomerName();
         this.dateTime = getDateTime();
