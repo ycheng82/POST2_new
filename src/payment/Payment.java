@@ -4,20 +4,30 @@
  * and open the template in the editor.
  */
 
-package post;
+package payment;
 
 /**
  *
- * @author Michael
+ * @author Ziga
  */
-public class Payment {
-    String ccType;
+public abstract class Payment {
     Double amount;
     String customerName;
     
-    Payment(String ccType, Double amt, String name) {
-        this.ccType = ccType;
+    Payment(Double amt, String name) {
         this.amount = amt;
         this.customerName = name;
     }
+    
+    public double getAmt() {
+        return amount;
+    }
+    
+    public String getCustName() {
+        return this.customerName;
+    }
+    
+    public abstract boolean processPayment();
+    
+    
 }
