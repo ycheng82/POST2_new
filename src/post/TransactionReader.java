@@ -20,8 +20,10 @@ public class TransactionReader {
     
     private BufferedReader source;
     private ArrayList<Transaction> transactions;
+    private int transactionIndex;
 
     public TransactionReader(Store store, String transactionFile) throws IOException {
+        transactionIndex = 0;
         String line = null;
         transactions = new ArrayList<Transaction>();
         source = new BufferedReader(new FileReader(transactionFile));
@@ -64,7 +66,7 @@ public class TransactionReader {
     }
     
     boolean hasMoreTransactions() {
-        if(true) {
+        if(transactionIndex < (transactions.size())) {
             return true;
         } else {
             return false;
@@ -74,12 +76,13 @@ public class TransactionReader {
     public static void main(String[] args) throws IOException {
         Store store = new Store("productCatalog.txt", "Anthony");
         TransactionReader tReader = new TransactionReader(store, "transaction.txt");
+        while(tReader.hasMoreTransactions()) {
+            Transaction temp = tReader.getNextTransaction();
+            System.out.println(temp.getPayment());
+        }
+    }
 
-    }
-/*
     Transaction getNextTransaction() {
-        Transaction transaction = new Transaction();
-        return transaction;
+        return transactions.get(transactionIndex++);
     }
-    */
 }

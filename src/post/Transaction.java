@@ -18,8 +18,7 @@ public class Transaction {
     private int numTransItems;
     private String payment;
     
-    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, 
-            int numItems, String payment) {
+    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, int numItems, String payment) {
         this.transItems = transItems;
         this.numTransItems = numItems;
         this.payment = payment;
