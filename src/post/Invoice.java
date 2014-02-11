@@ -1,6 +1,10 @@
 package post;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,11 +30,18 @@ public class Invoice {
     Invoice(Transaction transaction) {
         this.storeName = transaction.getTransHeader().getStoreName();
         this.customerName = transaction.getTransHeader().getcustomerName();
-        this.dateTime = "still need to set time....";
+        this.dateTime = getDateTime();
         this.transactionTotal = Double.toString(transaction.getTotal());
         this.transactionItems = transaction.getTransItems();
+        
     }
     
+    
+    public String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
     
     @Override
     public String toString() {
