@@ -6,6 +6,7 @@
 
 package post;
 
+import java.util.ArrayList;
 import java.io.IOException;
 
 /**
@@ -13,15 +14,26 @@ import java.io.IOException;
  * @author anthony
  */
 public class PostTerminal {
-    TransactionReader tReader;
-    Store store;
+    private TransactionReader tReader;
+    private Store store;
+    private ArrayList<Invoice> invoice;
+    private String customerName;
     
-    
-    PostTerminal(Store store, String fileName) throws IOException {
-        tReader = new TransactionReader(store, fileName);
-        
-        
+    public Invoice processTransaction(Transaction transaction) {
+        store.addTransaction(transaction);
+        Invoice invoice = new Invoice(store.getStoreName(), transaction.getCustomerName(), "Date Time",  transaction.getTransItems(), Double.toString(transaction.getTotal()));
+        store.addInvoice(invoice);
+        System.out.println(invoice.toString());
+        return invoice;
     }
     
-    
+    PostTerminal(Store store, String fileName, String customerName) throws IOException {
+        this.customerName = customerName;
+        this.store = store;
+        tReader = new TransactionReader(store, fileName);
+        invoice = new ArrayList<Invoice>();
+        while(tReader.hasMoreTransactions()) {
+            this.processTransaction(tReader.getNextTransaction());
+        }
+    }
 }

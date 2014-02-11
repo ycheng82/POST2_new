@@ -55,7 +55,7 @@ public class TransactionReader {
             
             //build transaction and add to list
             TransactionHeader header = new TransactionHeader("storeName", idInfo);
-            Transaction trans = new Transaction(header, itemList, itemList.size(), payment);
+            Transaction trans = new Transaction(header, itemList, itemList.size(), payment, idInfo);
             transactions.add(trans);
             
             //go past the empty line
@@ -74,7 +74,7 @@ public class TransactionReader {
     }
     
     public static void main(String[] args) throws IOException {
-        Store store = new Store("productCatalog.txt", "Anthony");
+        Store store = new Store("productCatalog.txt", "Anthony", "Ziga");
         TransactionReader tReader = new TransactionReader(store, "transaction.txt");
         while(tReader.hasMoreTransactions()) {
             Transaction temp = tReader.getNextTransaction();

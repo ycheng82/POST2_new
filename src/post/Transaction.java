@@ -17,11 +17,13 @@ public class Transaction {
     private ArrayList<TransactionItem> transItems;
     private int numTransItems;
     private String payment;
+    private String customerName;
     
-    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, int numItems, String payment) {
+    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, int numItems, String payment, String customerName) {
         this.transItems = transItems;
         this.numTransItems = numItems;
         this.payment = payment;
+        this.customerName = customerName;
     }
     
     public TransactionHeader getTransHeader() {
@@ -38,5 +40,17 @@ public class Transaction {
     
     public String getPayment() {
         return payment;
+    }
+    
+    public double getTotal() {
+        double total = 0.0;
+        for(int i = 0; i < transItems.size(); i++) {
+            total += transItems.get(i).getExtendedPrice();
+        }
+        return total;
+    }
+    
+    public String getCustomerName() {
+        return customerName;
     }
 }
