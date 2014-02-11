@@ -19,4 +19,12 @@ public class TransactionHeader {
         this.customerName = customerName;
     }
     
+    public String getStoreName() {
+        return this.storeName;
+    }
+    
+    public String getcustomerName() {
+        return this.customerName;
+    }
+    
 }

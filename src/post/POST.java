@@ -5,6 +5,7 @@
 package post;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +18,9 @@ public class POST {
      */
     public static void main(String[] args) throws IOException {
         Store store = new Store("productCatalog.txt", "Anthony", "Ziga");
-        store.openPost("transaction.txt", "Anthony");
-        
+        ArrayList<Invoice> invoices = store.processTransactionFile("transaction.txt", "Anthony");
+        for (Invoice i : invoices) {
+            System.out.println(i.toString());
+        }
     }
 }

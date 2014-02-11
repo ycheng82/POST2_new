@@ -30,7 +30,7 @@ public class TransactionReader {
         
         while((line = source.readLine()) != null) {
             //record in info line
-            String idInfo = line;
+            String customerName = line;
             
             //read in items
             line = source.readLine();
@@ -38,13 +38,14 @@ public class TransactionReader {
             while (!line.startsWith("<", 0)) {
                 StringTokenizer tok = new StringTokenizer(line); 
                 String productCode = tok.nextToken();
+                String productName = store.getProductDescription(productCode);
                 int numProduct = 1;
-                double unitPrice = store.getPrice(productCode);
+                double unitPrice = store.getProductPrice(productCode);
                 if (tok.hasMoreTokens())
                     numProduct = Integer.parseInt(tok.nextToken());
                 
                 TransactionItem item = new TransactionItem(
-                        numProduct, productCode, unitPrice);
+                        numProduct, productCode, productName, unitPrice);
                 
                 itemList.add(item);
                 line = source.readLine();
@@ -54,8 +55,8 @@ public class TransactionReader {
             String payment = line;
             
             //build transaction and add to list
-            TransactionHeader header = new TransactionHeader("storeName", idInfo);
-            Transaction trans = new Transaction(header, itemList, itemList.size(), payment, idInfo);
+            TransactionHeader header = new TransactionHeader(store.getName(), customerName);
+            Transaction trans = new Transaction(header, itemList, itemList.size(), payment, customerName);
             transactions.add(trans);
             
             //go past the empty line

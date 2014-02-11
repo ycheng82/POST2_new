@@ -16,12 +16,15 @@ public class TransactionItem {
     private String upc;
     private double unitPrice;
     private double extendedPrice;
+    private String productName;
     
-    public TransactionItem(int numProduct, String productCode, double productCost) {
+    public TransactionItem(int numProduct, String productCode, String productName, double productCost) {
         quantity = numProduct;
         upc = productCode;
         unitPrice = productCost;
         extendedPrice = productCost * quantity;
+        this.productName = productName;
+        
     }
     
     public int getQuantity() {
@@ -38,5 +41,9 @@ public class TransactionItem {
     
     public double getExtendedPrice() {
         return extendedPrice;
+    }
+    
+    public String getName() {
+        return productName;
     }
 }

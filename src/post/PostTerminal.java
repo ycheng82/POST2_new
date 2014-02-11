@@ -16,24 +16,32 @@ import java.io.IOException;
 public class PostTerminal {
     private TransactionReader tReader;
     private Store store;
-    private ArrayList<Invoice> invoice;
-    private String customerName;
+    private ArrayList<Invoice> invoices;
+    private String userName;
+    
+    
+    
+    PostTerminal(Store store, String userName) throws IOException {
+        this.userName = userName;
+        this.store = store;
+    }
     
     public Invoice processTransaction(Transaction transaction) {
-        store.addTransaction(transaction);
-        Invoice invoice = new Invoice(store.getStoreName(), transaction.getCustomerName(), "Date Time",  transaction.getTransItems(), Double.toString(transaction.getTotal()));
+        Invoice invoice = new Invoice(transaction);
         store.addInvoice(invoice);
+        store.addToDailyTotalPayments(transaction.getTotal());
         System.out.println(invoice.toString());
         return invoice;
     }
     
-    PostTerminal(Store store, String fileName, String customerName) throws IOException {
-        this.customerName = customerName;
-        this.store = store;
-        tReader = new TransactionReader(store, fileName);
-        invoice = new ArrayList<Invoice>();
+    public ArrayList<Invoice> processTransactionFile(String fileName) throws IOException {
+        tReader = new TransactionReader(this.store, fileName);
+        invoices = new ArrayList<Invoice>();
         while(tReader.hasMoreTransactions()) {
-            this.processTransaction(tReader.getNextTransaction());
+            Transaction transaction = tReader.getNextTransaction();
+            Invoice invoice = this.processTransaction(transaction);
+            invoices.add(invoice);
         }
+        return invoices;
     }
 }

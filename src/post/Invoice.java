@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Michael
+ * @author Team Ziga
  */
 public class Invoice {
     private String storeName;
@@ -21,20 +21,33 @@ public class Invoice {
     private String amountTendered;
     private String amountReturned;
     
-    Invoice(String storeName, String customerName, String dateTime, 
-            ArrayList<TransactionItem> transactionItems, String transactionTotal) {
-        this.storeName = storeName;
-        this.customerName = customerName;
-        this.dateTime = dateTime;
-        this.transactionItems = transactionItems;
-        this.transactionTotal = transactionTotal;
+    private Transaction transaction;
+    
+    Invoice(Transaction transaction) {
+        this.storeName = transaction.getTransHeader().getStoreName();
+        this.customerName = transaction.getTransHeader().getcustomerName();
+        this.dateTime = "still need to set time....";
+        this.transactionTotal = Double.toString(transaction.getTotal());
+        this.transactionItems = transaction.getTransItems();
     }
     
+    
+    @Override
     public String toString() {
-        String invoiceString = this.storeName + "   " + this.dateTime + "\n\n";
+        String invoiceString = "Store: " + this.storeName + "   " 
+                + this.dateTime + "\n\n"
+                + "Customer Name: " + this.customerName + "\n";
+        
+        double subtotal = 0;
         for(int i = 0; i < transactionItems.size(); i++) {
-            invoiceString += "Item: " + transactionItems.get(i).getUPC() + "\n";
+            TransactionItem item = transactionItems.get(i);
+            subtotal += item.getExtendedPrice();
+            invoiceString += "Item: " + item.getName()
+                    + "   $" + item.getUnitPrice() + "     " + subtotal + "\n";
+            
         }
+        
+        invoiceString += "Total: " + this.transactionTotal;
         return invoiceString;
     }
 }

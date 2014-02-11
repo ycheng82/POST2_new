@@ -18,7 +18,7 @@ public class Store {
     private Double dailyTotalPayments;
     private String storeName;
     private ArrayList<Invoice> dailyInvoices;
-    
+   
     public Store (String catalogueFileName, String managerName, String storeName) throws IOException {
         dailyTotalPayments = 0.0;
         dailyTransactions = new ArrayList();
@@ -27,9 +27,9 @@ public class Store {
         dailyInvoices = new ArrayList<Invoice>();
     }
     
-    public boolean openPost(String fileName, String customerName) throws IOException {
-        PostTerminal post = new PostTerminal(this, fileName, customerName);
-        return true;
+    public ArrayList<Invoice> processTransactionFile(String fileName, String customerName) throws IOException {
+        PostTerminal post = new PostTerminal(this, customerName);
+        return post.processTransactionFile(fileName);
     }
     
     public boolean addTransaction(Transaction transaction) {
@@ -37,17 +37,28 @@ public class Store {
         return true;
     }
     
+    public Double addToDailyTotalPayments(Double amount) {
+        this.dailyTotalPayments += amount;
+        return this.dailyTotalPayments;
+    }
+    
     public boolean addInvoice(Invoice invoice) {
         dailyInvoices.add(invoice);
         return true;
     }
     
-    public Double getPrice(String upc) {
+    public Double getProductPrice(String upc) {
         ProductSpec product = productCatalog.get(upc);
         return product.getPrice();
     }
     
-    public String getStoreName() {
+    public String getProductDescription(String upc) {
+        ProductSpec product = productCatalog.get(upc);
+        return product.getDescription();
+    }
+    
+    
+    public String getName() {
         return this.storeName;
     }
     
