@@ -20,9 +20,9 @@ public class Invoice {
     private String customerName;
     private String dateTime;
     private ArrayList<TransactionItem> transactionItems;
-    private String transactionTotal;
-    private String amountTendered;
-    private String amountReturned;
+    private double transactionTotal;
+    private double amountTendered;
+    private double amountReturned;
     
     private Transaction transaction;
     
@@ -30,7 +30,7 @@ public class Invoice {
         this.storeName = transaction.getTransHeader().getStoreName();
         this.customerName = transaction.getTransHeader().getcustomerName();
         this.dateTime = getDateTime();
-        this.transactionTotal = Double.toString(transaction.getTotal());
+        this.transactionTotal = transaction.getTotal();
         this.transactionItems = transaction.getTransItems();
         
     }
@@ -48,16 +48,17 @@ public class Invoice {
                 + this.dateTime + "\n\n"
                 + "Customer Name: " + this.customerName + "\n";
         
-        double subtotal = 0;
+        invoiceString += String.format("%-22s %5s %22s %22s\n",
+                "Item", "QTY", "UNIT_PRICE", "EXTENDED_PRICE");
         for(int i = 0; i < transactionItems.size(); i++) {
             TransactionItem item = transactionItems.get(i);
-            subtotal += item.getExtendedPrice();
-            String formatInvoice = String.format("Item: %-15s %15.2f %10.2f\n", item.getName(), item.getUnitPrice(), subtotal);
+            String formatInvoice = String.format("%-22s %5d %22.2f %22.2f\n",
+                    item.getName(), item.getQuantity(), item.getUnitPrice(), item.getExtendedPrice());
             invoiceString += formatInvoice;
             
         }
         
-        invoiceString += "Total: $" + this.transactionTotal;
+        invoiceString += "Total: $" + String.format("%.2f", this.transactionTotal);
         return invoiceString;
     }
 }
