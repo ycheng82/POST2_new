@@ -14,12 +14,13 @@ public class Store {
     
     //Products by UPC code
     private static HashMap<String,ProductSpec> productCatalog = new HashMap();
-    private ArrayList<Transaction> currentTransactions;
-    private Double totalPayments;
+    private ArrayList<Transaction> dailyTransactions;
+    private Double dailyTotalPayments;
     
     
-    public Store (String catalogueFileName, String managerName) throws IOException{
-        currentTransactions = new ArrayList();
+    public Store (String catalogueFileName, String managerName) throws IOException {
+        dailyTotalPayments = 0.0;
+        dailyTransactions = new ArrayList();
         productCatalog = ProductReader.getCatalog(catalogueFileName);
         
     }
@@ -30,7 +31,7 @@ public class Store {
     }
     
     public boolean addTransaction(Transaction transaction) {
-        currentTransactions.add(transaction);
+        dailyTransactions.add(transaction);
         return true;
     }
     
