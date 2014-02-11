@@ -42,12 +42,12 @@ public class Invoice {
         for(int i = 0; i < transactionItems.size(); i++) {
             TransactionItem item = transactionItems.get(i);
             subtotal += item.getExtendedPrice();
-            invoiceString += "Item: " + item.getName()
-                    + "   $" + item.getUnitPrice() + "     " + subtotal + "\n";
+            String formatInvoice = String.format("Item: %-15s %15.2f %10.2f\n", item.getName(), item.getUnitPrice(), subtotal);
+            invoiceString += formatInvoice;
             
         }
         
-        invoiceString += "Total: " + this.transactionTotal;
+        invoiceString += "Total: $" + this.transactionTotal;
         return invoiceString;
     }
 }
