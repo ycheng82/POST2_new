@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
+import payment.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,6 +23,7 @@ public class Invoice {
     private double transactionTotal;
     private double amountTendered;
     private double amountReturned;
+    private Payment payment;
     
     private Transaction transaction;
     
@@ -32,7 +33,13 @@ public class Invoice {
         this.dateTime = getDateTime();
         this.transactionTotal = transaction.getTotal();
         this.transactionItems = transaction.getTransItems();
-        
+        payment = transaction.getPayment();
+        if (payment instanceof CashPayment) {
+            double tendered = ((CashPayment)(payment)).getAmt();
+            this.amountReturned = this.transactionTotal - tendered; 
+        } else {
+            this.amountReturned = 0.0;
+        }
     }
     
     
@@ -54,13 +61,15 @@ public class Invoice {
                 "----", "---", "----------", "--------------");
         for(int i = 0; i < transactionItems.size(); i++) {
             TransactionItem item = transactionItems.get(i);
-            String formatInvoice = String.format("%-22s %5d %22.2f %22.2f\n",
+            String formatItem = String.format("%-22s %5d %22.2f %22.2f\n",
                     item.getName(), item.getQuantity(), item.getUnitPrice(), item.getExtendedPrice());
-            invoiceString += formatInvoice;
-            
+            invoiceString += formatItem;
         }
         
-        invoiceString += "Total: $" + String.format("%.2f", this.transactionTotal);
+        invoiceString += "\n-------------------------------\n"
+                + String.format("Total: %.2f", this.transactionTotal)
+                + "\n" + payment.toString()
+                + String.format("\nAmount Returned: %.2f", this.amountReturned);
         return invoiceString;
     }
 }

@@ -7,19 +7,22 @@
 package transaction;
 
 import java.util.ArrayList;
+import payment.Payment;
 
 
 /**
  *
- * @author Michael
+ * @author Ziga
  */
 public class Transaction {
     private TransactionHeader header;
     private ArrayList<TransactionItem> transItems;
     private int numTransItems;
-    private String payment;
+    private Payment payment;
     
-    public Transaction(TransactionHeader header, ArrayList<TransactionItem> transItems, int numItems, String payment, String customerName) {
+    public Transaction(TransactionHeader header, 
+            ArrayList<TransactionItem> transItems, int numItems, 
+            Payment payment, String customerName) {
         this.transItems = transItems;
         this.numTransItems = numItems;
         this.payment = payment;
@@ -38,7 +41,7 @@ public class Transaction {
         return numTransItems;
     }
     
-    public String getPayment() {
+    public Payment getPayment() {
         return payment;
     }
     

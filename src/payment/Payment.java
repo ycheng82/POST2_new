@@ -16,7 +16,7 @@ import post.Store;
 public abstract class Payment {
     
     
-    public abstract double init(ArrayList<String> params);
-    public abstract boolean processPayment();
+    public abstract boolean init(ArrayList<String> params);
+    public abstract double processPayment();
     
 }

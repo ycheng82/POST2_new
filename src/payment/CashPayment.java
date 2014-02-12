@@ -14,16 +14,27 @@ import java.util.ArrayList;
  */
 public class CashPayment extends Payment {
     private String customerName;
-    private int checkNum;
     private double amt;
       
     @Override
-    public boolean processPayment() {
-        return true;
+    public double processPayment() {
+        return amt;
     }
 
     @Override
-    public double init(ArrayList<String> params) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean init(ArrayList<String> params) {
+        customerName = params.get(0);
+        amt = Double.parseDouble(params.get(1));
+        return true;
+    }
+    
+    public double getAmt() {
+        return this.amt;
+    }
+    
+    @Override
+    public String toString() {
+        String invStr = String.format("Amount Tendered: %.2f", amt);
+        return invStr;
     }
 }

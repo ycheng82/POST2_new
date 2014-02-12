@@ -7,7 +7,6 @@
 package payment;
 
 import java.util.ArrayList;
-import post.Store;
 
 /**
  *
@@ -16,7 +15,7 @@ import post.Store;
 public class MastercardPayment extends Payment {
     private String customerName;
     private int ccNum;
-    private String expDate;
+    private double amt;
 
     /**
      *
@@ -24,12 +23,19 @@ public class MastercardPayment extends Payment {
      * @return
      */
     @Override
-    public double init(ArrayList<String> params) {
-        double payAmount = 0.0;
-        return payAmount;
+    public boolean init(ArrayList<String> params) {
+        customerName = params.get(0);
+        ccNum = Integer.parseInt(params.get(1));
+        return true;
     }
     @Override
-    public boolean processPayment() {
-        return true;
+    public double processPayment() {
+        return amt;
+    }
+    
+    @Override
+    public String toString() {
+        String invString = "Amount Tendered: Paid with Mastercard";
+        return invString;
     }
 }

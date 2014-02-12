@@ -15,18 +15,23 @@ import java.util.ArrayList;
 public class VisaPayment extends Payment {
     private String customerName;
     private int ccNum;
-    private String expDate;
+    private double amt;
     
     
-    public double init(ArrayList<String> params) {
-        double paymentAmt = 0.0;
-        return paymentAmt;
+    public boolean init(ArrayList<String> params) {
+        customerName = params.get(0);
+        ccNum = Integer.parseInt(params.get(1));
+        return true;
     }
     
     @Override
-    public boolean processPayment() {
-        return true;
-        
+    public double processPayment() {
+        return amt;
+    }
+    
+    public String toString() {
+        String invString = "Amount Tendered: Paid by Visa";
+        return invString;
     }
     
 }

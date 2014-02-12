@@ -11,12 +11,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import payment.*;
 import post.Store;
 
 
 /**
  *
- * @author Michael
+ * @author Ziga
  */
 public class TransactionReader {
     
@@ -24,22 +25,23 @@ public class TransactionReader {
     private ArrayList<Transaction> transactions;
     private int transactionIndex;
 
-    public TransactionReader(Store store, String transactionFile) throws IOException {
+    public TransactionReader(Store store, String transactionFile) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         transactionIndex = 0;
-        String line = null;
+        String line;
         transactions = new ArrayList<Transaction>();
         source = new BufferedReader(new FileReader(transactionFile));
         
+        //read whole file
         while((line = source.readLine()) != null) {
-            //record in info line
+            //record customer name line
             String customerName = line;
             
             //read in items
             line = source.readLine();
             ArrayList<TransactionItem> itemList = new ArrayList<TransactionItem>();
-            while (!line.startsWith("<", 0)) {
-                StringTokenizer tok = new StringTokenizer(line); 
-                String productCode = tok.nextToken();
+            StringTokenizer tok = new StringTokenizer(line); 
+            String productCode = tok.nextToken();
+            while (productCode.matches("[0-9][0-9][0-9][0-9]")) {
                 String productName = store.getProductDescription(productCode);
                 int numProduct = 1;
                 double unitPrice = store.getProductPrice(productCode);
@@ -51,10 +53,19 @@ public class TransactionReader {
                 
                 itemList.add(item);
                 line = source.readLine();
+                tok = new StringTokenizer(line); 
+                productCode = tok.nextToken();
             }
             
             //read in payment
-            String payment = line;
+            tok = new StringTokenizer(line);
+            String pType = tok.nextToken();
+            Payment payment = (Payment)(Class.forName("payment." + pType + "Payment").newInstance());
+            String str = tok.nextToken();
+            ArrayList<String> params = new ArrayList<String>();
+            params.add(customerName);
+            params.add(str);
+            payment.init(params);
             
             //build transaction and add to list
             TransactionHeader header = new TransactionHeader(store.getName(), customerName);
@@ -76,7 +87,7 @@ public class TransactionReader {
         }
     }
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         Store store = new Store();
         store.open("productCatalog.txt", "Anthony", "Ziga");
         TransactionReader tReader = new TransactionReader(store, "transaction.txt");

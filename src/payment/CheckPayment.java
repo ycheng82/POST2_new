@@ -16,13 +16,21 @@ public class CheckPayment extends Payment {
     private String customerName;
     private double amt;
     
-    public double init(ArrayList<String> params) {
-        double paymentAmt = 0.0;
-        return paymentAmt;
-    }
     @Override
-    public boolean processPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean init(ArrayList<String> params) {
+        customerName = params.get(0);
+        amt = Double.parseDouble(params.get(1));
+        return true;
     }
     
+    @Override
+    public double processPayment() {
+        return amt;
+    }
+    
+    @Override
+    public String toString() {
+        String invString = "Amount Tendered: Paid by check";
+        return invString;
+    }    
 }

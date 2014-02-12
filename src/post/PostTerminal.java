@@ -36,7 +36,7 @@ public class PostTerminal {
         return invoice;
     }
     
-    public ArrayList<Invoice> processTransactionFile(String fileName) throws IOException {
+    public ArrayList<Invoice> processTransactionFile(String fileName) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         tReader = new TransactionReader(this.store, fileName);
         invoices = new ArrayList<Invoice>();
         while(tReader.hasMoreTransactions()) {
