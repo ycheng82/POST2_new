@@ -7,29 +7,23 @@
 package payment;
 
 import java.util.ArrayList;
-import post.Store;
 
 /**
  *
  * @author anthony
  */
-public class MastercardPayment extends Payment {
+public class CashPayment extends Payment {
     private String customerName;
-    private int ccNum;
-    private String expDate;
-
-    /**
-     *
-     * @param params
-     * @return
-     */
-    @Override
-    public double init(ArrayList<String> params) {
-        double payAmount = 0.0;
-        return payAmount;
-    }
+    private int checkNum;
+    private double amt;
+      
     @Override
     public boolean processPayment() {
         return true;
+    }
+
+    @Override
+    public double init(ArrayList<String> params) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -18,9 +18,12 @@ public class POST {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        System.out.println("building a new store with productCatalog.txt"
+        System.out.println("building a new store"); 
+        Store store = new Store();
+        
+        System.out.println("opening store with productCatalog.txt"
                 + ", manager \"Anthony\", and store name \"Ziga\"\n");
-        Store store = new Store("productCatalog.txt", "Anthony", "Ziga");
+        store.open("productCatalog.txt", "Anthony", "Ziga");
         
         System.out.println("now processing transaction file...\n");
         ArrayList<Invoice> invoices = store.processTransactionFile("transaction.txt", "Anthony");

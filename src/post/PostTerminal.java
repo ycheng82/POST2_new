@@ -9,6 +9,7 @@ package post;
 import transaction.*;
 import java.util.ArrayList;
 import java.io.IOException;
+import payment.Payment;
 
 /**
  *
@@ -19,6 +20,7 @@ public class PostTerminal {
     private Store store;
     private ArrayList<Invoice> invoices;
     private String userName;
+    private ArrayList<Payment> payments;
     
     
     

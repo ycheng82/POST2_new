@@ -46,10 +46,12 @@ public class Invoice {
     public String toString() {
         String invoiceString = "Store: " + this.storeName + "\n\n"
                 + "Customer Name: " + this.customerName + "    " 
-                + this.dateTime + "\n";
+                + this.dateTime + "\n\n";
         
         invoiceString += String.format("%-22s %5s %22s %22s\n",
                 "Item", "QTY", "UNIT_PRICE", "EXTENDED_PRICE");
+        invoiceString += String.format("%-22s %5s %22s %22s\n",
+                "----", "---", "----------", "--------------");
         for(int i = 0; i < transactionItems.size(); i++) {
             TransactionItem item = transactionItems.get(i);
             String formatInvoice = String.format("%-22s %5d %22.2f %22.2f\n",

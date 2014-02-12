@@ -9,6 +9,7 @@ import product.ProductSpec;
 import product.ProductReader;
 import java.io.IOException;
 import java.util.*;
+import payment.Payment;
 
 /**
  *
@@ -22,13 +23,19 @@ public class Store {
     private Double dailyTotalPayments;
     private String storeName;
     private ArrayList<Invoice> dailyInvoices;
-   
-    public Store (String catalogueFileName, String managerName, String storeName) throws IOException {
+    private ArrayList<Payment> payments;
+    
+    public void open(String catalogueFileName, String managerName, String storeName) throws IOException {
         dailyTotalPayments = 0.0;
         dailyTransactions = new ArrayList();
         productCatalog = ProductReader.getCatalog(catalogueFileName);
         this.storeName = storeName;
         dailyInvoices = new ArrayList<Invoice>();
+        payments = new ArrayList<Payment>();
+    }
+    
+    public void close() {
+        
     }
     
     public ArrayList<Invoice> processTransactionFile(String fileName, String customerName) throws IOException {
@@ -60,8 +67,7 @@ public class Store {
         ProductSpec product = productCatalog.get(upc);
         return product.getDescription();
     }
-    
-    
+
     public String getName() {
         return this.storeName;
     }

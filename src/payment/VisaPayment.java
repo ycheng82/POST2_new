@@ -6,19 +6,27 @@
 
 package payment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author anthony
  */
 public class VisaPayment extends Payment {
-
-    VisaPayment(Double amt, String name) {
-        super(amt, name);
+    private String customerName;
+    private int ccNum;
+    private String expDate;
+    
+    
+    public double init(ArrayList<String> params) {
+        double paymentAmt = 0.0;
+        return paymentAmt;
     }
     
     @Override
     public boolean processPayment() {
         return true;
+        
     }
     
 }

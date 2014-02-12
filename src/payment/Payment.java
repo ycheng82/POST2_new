@@ -6,28 +6,17 @@
 
 package payment;
 
+import java.util.ArrayList;
+import post.Store;
+
 /**
  *
  * @author Ziga
  */
 public abstract class Payment {
-    Double amount;
-    String customerName;
     
-    Payment(Double amt, String name) {
-        this.amount = amt;
-        this.customerName = name;
-    }
     
-    public double getAmt() {
-        return amount;
-    }
-    
-    public String getCustName() {
-        return this.customerName;
-    }
-    
+    public abstract double init(ArrayList<String> params);
     public abstract boolean processPayment();
-    
     
 }
