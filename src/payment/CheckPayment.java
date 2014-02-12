@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 package payment;
@@ -9,13 +9,21 @@ package payment;
 import java.util.ArrayList;
 
 /**
- *
- * @author anthony
+ * this class represents a check payment
+ * @author Team Ziga
  */
 public class CheckPayment extends Payment {
     private String customerName;
     private double amt;
     
+    /**
+     * initialize check Payment.
+     * given a 2 item array list of strings.
+     * first string should be customer name
+     * second string should be amount of payment.
+     * @param params ArrayList<String>
+     * @return double the amount that was paid
+     */
     @Override
     public boolean init(ArrayList<String> params) {
         customerName = params.get(0);
@@ -23,6 +31,10 @@ public class CheckPayment extends Payment {
         return true;
     }
     
+    /**
+     * process this payment
+     * @return double amount paid
+     */
     @Override
     public double processPayment() {
         return amt;

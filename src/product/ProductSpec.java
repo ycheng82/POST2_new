@@ -1,12 +1,14 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
+
 package product;
 
 /**
- *
- * @author Jonathan
+ * ProductSpec holds info about a product
+ * @author Team Ziga
  */
 public class ProductSpec {
     

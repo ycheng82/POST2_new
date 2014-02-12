@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
+
 package post;
 
 import transaction.Invoice;
@@ -9,15 +11,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
- * @author Ziga
+ * This class is for opening the store
+ * @author Team Ziga
  */
 public class POST {
 
     /**
+     * currently using to test Store functionality 2/12/2014
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         System.out.println("building a new store"); 
         Store store = new Store();
         
@@ -32,5 +35,8 @@ public class POST {
         for (Invoice i : invoices) {
             System.out.println("\n\n" + i.toString());
         }
+        
+        System.out.println("\n\nClosing store.....");
+        store.close();
     }
 }

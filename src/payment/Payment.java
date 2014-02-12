@@ -1,22 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 package payment;
 
 import java.util.ArrayList;
-import post.Store;
 
 /**
- *
- * @author Ziga
+ * This is the abstract class for all payment types
+ * @author Team Ziga
  */
 public abstract class Payment {
     
-    
+    /**
+     * initialize variables in payment
+     * @param params ArrayList<String>
+     * @return true if success
+     */
     public abstract boolean init(ArrayList<String> params);
-    public abstract double processPayment();
     
+    /**
+     * process this payment
+     * @return double amount paid
+     */
+    public abstract double processPayment();  
 }

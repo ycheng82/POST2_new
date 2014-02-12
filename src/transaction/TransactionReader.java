@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 package transaction;
@@ -16,8 +16,9 @@ import post.Store;
 
 
 /**
- *
- * @author Ziga
+ * TransactionReader takes a file and creates the transactions
+ * in the file
+ * @author Team Ziga
  */
 public class TransactionReader {
     
@@ -25,6 +26,16 @@ public class TransactionReader {
     private ArrayList<Transaction> transactions;
     private int transactionIndex;
 
+    /**
+     * initiate a reader with store name and transaction file,
+     * creates a list of transactions that can be accessed
+     * @param store
+     * @param transactionFile
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException 
+     */
     public TransactionReader(Store store, String transactionFile) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         transactionIndex = 0;
         String line;
@@ -87,6 +98,14 @@ public class TransactionReader {
         }
     }
     
+    /**
+     * used to test TransactionReader
+     * @param args
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException 
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         Store store = new Store();
         store.open("productCatalog.txt", "Anthony", "Ziga");

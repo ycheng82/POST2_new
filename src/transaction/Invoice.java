@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import payment.*;
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 /**
- *
+ * Invoice for transactions
  * @author Team Ziga
  */
 public class Invoice {
@@ -27,6 +27,10 @@ public class Invoice {
     
     private Transaction transaction;
     
+    /**
+     * create an invoice given the transaction
+     * @param transaction 
+     */
     public Invoice(Transaction transaction) {
         this.storeName = transaction.getTransHeader().getStoreName();
         this.customerName = transaction.getTransHeader().getcustomerName();
@@ -36,14 +40,14 @@ public class Invoice {
         payment = transaction.getPayment();
         if (payment instanceof CashPayment) {
             double tendered = ((CashPayment)(payment)).getAmt();
-            this.amountReturned = this.transactionTotal - tendered; 
+            this.amountReturned = (-1)*(this.transactionTotal - tendered); 
         } else {
             this.amountReturned = 0.0;
         }
     }
     
     
-    public String getDateTime() {
+    private String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
@@ -67,9 +71,9 @@ public class Invoice {
         }
         
         invoiceString += "\n-------------------------------\n"
-                + String.format("Total: %.2f", this.transactionTotal)
+                + String.format("Total: $%.2f", this.transactionTotal)
                 + "\n" + payment.toString()
-                + String.format("\nAmount Returned: %.2f", this.amountReturned);
+                + String.format("\nAmount Returned: $%.2f", this.amountReturned);
         return invoiceString;
     }
 }

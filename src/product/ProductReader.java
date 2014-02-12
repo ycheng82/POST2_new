@@ -1,6 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 package product;
 
@@ -11,20 +12,15 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author Jonathan
+ * product reader reads in a catalog from a file.
+ * @author Team Ziga
  */
 public class ProductReader {
-    
     private static HashMap productCatalog;
-    
     private static StringTokenizer productTokens;
-    
     private static BufferedReader source;
-    
     private static String UPC, Description, createPrice;
     private static double Price;
-    
     
     
     public ProductReader(String productFile)throws IOException {
@@ -34,10 +30,15 @@ public class ProductReader {
         
     }
     
+    /**
+     * takes a catalog(file) and returns a hashmap of ProductSpecs with key
+     * being the upc
+     * @param fileName
+     * @return HashMap<ProductSpec>
+     * @throws IOException 
+     */
     public static HashMap getCatalog(String fileName) throws IOException{
-        
-        ProductReader read = new ProductReader(fileName);
-        
+        ProductReader read = new ProductReader(fileName);   
         ProductReader.init();
         ProductReader.close();
         
@@ -45,6 +46,11 @@ public class ProductReader {
         
     }
     
+    /**
+     * use to test product reader
+     * @param args
+     * @throws IOException 
+     */
     public static void main(String[] args) throws IOException{
         
         HashMap catalog = ProductReader.getCatalog("productCatalog.txt");
@@ -53,6 +59,9 @@ public class ProductReader {
         
     }
 
+    /**
+     * close the file stream
+     */
     static void close() {
         
         try {
@@ -61,6 +70,10 @@ public class ProductReader {
         
     }
     
+    /**
+     * populates catalog hashmap
+     * @throws IOException 
+     */
     static void init() throws IOException{
         
         String newItem;
@@ -79,8 +92,6 @@ public class ProductReader {
         
     }
         
-    
-    
     boolean hasMoreProducts(){
         return true;
     }

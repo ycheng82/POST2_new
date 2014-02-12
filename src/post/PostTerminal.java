@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 package post;
@@ -12,7 +12,8 @@ import java.io.IOException;
 import payment.Payment;
 
 /**
- *
+ * Post terminal processes transactions in a file
+ * or single transactions at a time.
  * @author anthony
  */
 public class PostTerminal {
@@ -29,13 +30,27 @@ public class PostTerminal {
         this.store = store;
     }
     
+    /**
+     * process individual transactions
+     * @param transaction
+     * @return Invoice for the transaction
+     */
     public Invoice processTransaction(Transaction transaction) {
         Invoice invoice = new Invoice(transaction);
-        store.addInvoice(invoice);
+        store.addDailyInvoice(invoice);
         store.addToDailyTotalPayments(transaction.getTotal());
         return invoice;
     }
     
+    /**
+     * process a file of transactions
+     * @param fileName
+     * @return ArrayList<Invoice> invoices for the transaction
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException 
+     */
     public ArrayList<Invoice> processTransactionFile(String fileName) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         tReader = new TransactionReader(this.store, fileName);
         invoices = new ArrayList<Invoice>();

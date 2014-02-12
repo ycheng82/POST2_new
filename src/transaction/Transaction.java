@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * CSC 668 SFSU
+ * Project POST1
+ * Team Ziga
  */
 
 package transaction;
@@ -11,8 +11,8 @@ import payment.Payment;
 
 
 /**
- *
- * @author Ziga
+ * Transactions for the store
+ * @author Team Ziga
  */
 public class Transaction {
     private TransactionHeader header;
@@ -20,6 +20,14 @@ public class Transaction {
     private int numTransItems;
     private Payment payment;
     
+    /**
+     * create a new transaction
+     * @param header
+     * @param transItems
+     * @param numItems
+     * @param payment
+     * @param customerName 
+     */
     public Transaction(TransactionHeader header, 
             ArrayList<TransactionItem> transItems, int numItems, 
             Payment payment, String customerName) {
@@ -45,6 +53,10 @@ public class Transaction {
         return payment;
     }
     
+    /**
+     * calculate the total for this transaction
+     * @return double = the total
+     */
     public double getTotal() {
         double total = 0.0;
         for(int i = 0; i < transItems.size(); i++) {
