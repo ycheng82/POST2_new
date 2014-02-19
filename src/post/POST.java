@@ -9,6 +9,7 @@ package post;
 import transaction.Invoice;
 import java.io.IOException;
 import java.util.ArrayList;
+import postGUI.PostGUI;
 
 /**
  * This class is for opening the store
@@ -28,13 +29,7 @@ public class POST {
                 + ", manager \"Anthony\", and store name \"Ziga\"\n");
         store.open("productCatalog.txt", "Anthony", "Ziga");
         
-        System.out.println("now processing transaction file...\n");
-        ArrayList<Invoice> invoices = store.processTransactionFile("transaction.txt", "Anthony");
-        
-        System.out.println("printing invoices...");
-        for (Invoice i : invoices) {
-            System.out.println("\n\n" + i.toString());
-        }
+        PostGUI.createAndShow(store);
         
         System.out.println("\n\nClosing store.....");
         store.close();

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import payment.*;
 import post.Store;
+import product.ProductSpec;
 
 
 /**
@@ -53,9 +54,10 @@ public class TransactionReader {
             StringTokenizer tok = new StringTokenizer(line); 
             String productCode = tok.nextToken();
             while (productCode.matches("[0-9][0-9][0-9][0-9]")) {
-                String productName = store.getProductDescription(productCode);
+                ProductSpec productSpec = store.getProductSpec(productCode);
+                String productName = productSpec.getDescription();
                 int numProduct = 1;
-                double unitPrice = store.getProductPrice(productCode);
+                double unitPrice = productSpec.getPrice();
                 if (tok.hasMoreTokens())
                     numProduct = Integer.parseInt(tok.nextToken());
                 
@@ -91,11 +93,7 @@ public class TransactionReader {
     }
     
     public boolean hasMoreTransactions() {
-        if(transactionIndex < (transactions.size())) {
-            return true;
-        } else {
-            return false;
-        }
+        return transactionIndex < (transactions.size());
     }
     
     /**

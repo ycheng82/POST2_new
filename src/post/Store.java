@@ -94,26 +94,36 @@ public class Store {
         dailyInvoices.add(invoice);
         return true;
     }
-    
-    /**
-     * get product price by upc code
-     * @param upc
-     * @return double the rice
-     */
-    public double getProductPrice(String upc) {
-        ProductSpec product = productCatalog.get(upc);
-        return product.getPrice();
-    }
-    
-    /**
-     * get product description by upc code
-     * @param upc
-     * @return String description
-     */
-    public String getProductDescription(String upc) {
-        ProductSpec product = productCatalog.get(upc);
-        return product.getDescription();
-    }
+  
+   public ProductSpec getProductSpec(String upc) {
+       return this.getProductSpec(upc);
+   }
+   
+   
+   public Set<String> getUPCList() {
+       return this.productCatalog.keySet();
+   }
+   
+   
+//    /**
+//     * get product price by upc code
+//     * @param upc
+//     * @return double the rice
+//     */
+//    public double getProductPrice(String upc) {
+//        ProductSpec product = productCatalog.get(upc);
+//        return product.getPrice();
+//    }
+//    
+//    /**
+//     * get product description by upc code
+//     * @param upc
+//     * @return String description
+//     */
+//    public String getProductDescription(String upc) {
+//        ProductSpec product = productCatalog.get(upc);
+//        return product.getDescription();
+//    }
     
     /**
      * get store name

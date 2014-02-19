@@ -5,23 +5,29 @@
  */
 
 package postGUI;
-import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import post.Store;
 /**
  *
  * @author Ye
  */
 public class PostGUI extends javax.swing.JFrame {
 
+    private Store store;
+
+    
     /**
      * Creates new form PostGUI
+     * @param store
      */
-    double totalPrice = 0;
-    public PostGUI() {
+    public PostGUI(Store store) {
         initComponents();
+        this.store = store;
+        
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -302,18 +308,18 @@ public class PostGUI extends javax.swing.JFrame {
     private void enterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enterButtonMouseClicked
         // TODO add your handling code here:
         
-        currentTime.setText(""+ new Date());//get new time
-        
-        String itemDet = "giraffe"; //get through rmi
-        String itemQty =  quantityList.getSelectedItem().toString(); //get quantity
-        String itemUPrice = "1.50"; //get through rmi
-        
-        String itemAll = itemDet + "    " + "   "+ itemQty + "  "+ itemUPrice +"    " ;
-        DecimalFormat f = new DecimalFormat("##.00");  
-        Double itemTotal = Double.parseDouble(itemQty)*Double.parseDouble(itemUPrice);
-        totalPrice += itemTotal;
-        invoiceText.setText(invoiceText.getText()+ itemAll+ f.format(itemTotal)+"\n"); //modity invoice
-        totalAmount.setText("$" + f.format(totalPrice)); //modify total
+//        currentTime.setText(""+ new Date());//get new time
+//        
+//        String itemDet = "giraffe"; //get through rmi
+//        String itemQty =  quantityList.getSelectedItem().toString(); //get quantity
+//        String itemUPrice = "1.50"; //get through rmi
+//        
+//        String itemAll = itemDet + "    " + "   "+ itemQty + "  "+ itemUPrice +"    " ;
+//        DecimalFormat f = new DecimalFormat("##.00");  
+//        Double itemTotal = Double.parseDouble(itemQty)*Double.parseDouble(itemUPrice);
+//        totalPrice += itemTotal;
+//        invoiceText.setText(invoiceText.getText()+ itemAll+ f.format(itemTotal)+"\n"); //modity invoice
+//        totalAmount.setText("$" + f.format(totalPrice)); //modify total
                 
     }//GEN-LAST:event_enterButtonMouseClicked
 
@@ -328,10 +334,7 @@ public class PostGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_payButtonMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void createAndShow(final Store store) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -357,11 +360,48 @@ public class PostGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new PostGUI().setVisible(true);
+                new PostGUI(store).setVisible(true);
             }
         });
     }
+    
+    
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PostGUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amountLabel;
