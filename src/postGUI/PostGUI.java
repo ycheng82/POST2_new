@@ -5,7 +5,9 @@
  */
 
 package postGUI;
+import java.text.DecimalFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Ye
@@ -15,6 +17,7 @@ public class PostGUI extends javax.swing.JFrame {
     /**
      * Creates new form PostGUI
      */
+    double totalPrice = 0;
     public PostGUI() {
         initComponents();
     }
@@ -33,6 +36,7 @@ public class PostGUI extends javax.swing.JFrame {
         nameText = new javax.swing.JTextField();
         productPanel = new javax.swing.JPanel();
         upcLabel = new javax.swing.JLabel();
+        String[] items= {"0000","0001","0002"};
         upcList = new javax.swing.JComboBox();
         quantityLabel = new javax.swing.JLabel();
         quantityList = new javax.swing.JComboBox();
@@ -72,9 +76,9 @@ public class PostGUI extends javax.swing.JFrame {
             .addGroup(namePanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(nameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         namePanelLayout.setVerticalGroup(
             namePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,6 +93,10 @@ public class PostGUI extends javax.swing.JFrame {
         productPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), "Product", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         upcLabel.setText("UPC");
+
+        for (int i = 0; i<items.length;i++){
+            upcList.addItem(items[i]);
+        }
 
         quantityLabel.setText("Quantity");
 
@@ -197,6 +205,11 @@ public class PostGUI extends javax.swing.JFrame {
         amountLabel.setText("Amount");
 
         payButton.setText("Pay");
+        payButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                payButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout paymentPanelLayout = new javax.swing.GroupLayout(paymentPanel);
         paymentPanel.setLayout(paymentPanelLayout);
@@ -288,10 +301,32 @@ public class PostGUI extends javax.swing.JFrame {
 
     private void enterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enterButtonMouseClicked
         // TODO add your handling code here:
-        totalAmount.setText("clicked");
-        currentTime.setText(""+ new Date());
+        
+        currentTime.setText(""+ new Date());//get new time
+        
+        String itemDet = "giraffe"; //get through rmi
+        String itemQty =  quantityList.getSelectedItem().toString(); //get quantity
+        String itemUPrice = "1.50"; //get through rmi
+        
+        String itemAll = itemDet + "    " + "   "+ itemQty + "  "+ itemUPrice +"    " ;
+        DecimalFormat f = new DecimalFormat("##.00");  
+        Double itemTotal = Double.parseDouble(itemQty)*Double.parseDouble(itemUPrice);
+        totalPrice += itemTotal;
+        invoiceText.setText(invoiceText.getText()+ itemAll+ f.format(itemTotal)+"\n"); //modity invoice
+        totalAmount.setText("$" + f.format(totalPrice)); //modify total
                 
     }//GEN-LAST:event_enterButtonMouseClicked
+
+    private void payButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payButtonMouseClicked
+        // TODO add your handling code here:
+        if (paymentList.getSelectedItem().toString().equals("Credit")){
+            String creditNum = JOptionPane.showInputDialog(null, "Please enter your credit number", null);
+            System.out.println(creditNum);
+        }
+        else {
+            //print invoice;
+        }
+    }//GEN-LAST:event_payButtonMouseClicked
 
     /**
      * @param args the command line arguments
