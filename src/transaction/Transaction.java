@@ -20,6 +20,10 @@ public class Transaction {
     private int numTransItems;
     private Payment payment;
     
+    public Transaction() {
+        transItems = new ArrayList<TransactionItem>();
+    }
+    
     /**
      * create a new transaction
      * @param header
@@ -35,6 +39,18 @@ public class Transaction {
         this.numTransItems = numItems;
         this.payment = payment;
         this.header = header;
+    }
+    
+    public void setTransHeader(TransactionHeader header) {
+        this.header = header;
+    }
+    
+    public void addTransItem(TransactionItem transItem) {
+        this.transItems.add(transItem);
+    }
+    
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
     
     public TransactionHeader getTransHeader() {

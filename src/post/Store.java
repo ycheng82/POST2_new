@@ -100,8 +100,10 @@ public class Store {
    }
    
    
-   public Set<String> getUPCList() {
-       return this.productCatalog.keySet();
+   public String[] getUPCList() {
+       Set<String> upcSet = this.productCatalog.keySet();
+       String[] upcList = new String[upcSet.size()];
+       return upcList;
    }
    
    

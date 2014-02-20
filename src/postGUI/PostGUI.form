@@ -34,8 +34,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="namePanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="productPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="productPanel" max="32767" attributes="0"/>
                   </Group>
                   <Component id="invoicePanel" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -71,8 +70,8 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nameText" min="-2" pref="58" max="-2" attributes="0"/>
-                  <EmptySpace pref="163" max="32767" attributes="0"/>
+                  <Component id="nameTextField" min="-2" pref="195" max="-2" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -82,7 +81,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -95,9 +94,9 @@
             <Property name="text" type="java.lang.String" value="Custome Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nameText">
+        <Component class="javax.swing.JTextField" name="nameTextField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTextFieldActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -124,11 +123,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="upcLabel" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="upcList" min="-2" pref="52" max="-2" attributes="0"/>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Component id="upcComboBox" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="quantityList" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="quantityComboBox" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -144,9 +143,9 @@
                   <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="upcLabel" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="upcList" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="upcComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="quantityList" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="quantityComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="enterButton" min="-2" max="-2" attributes="0"/>
@@ -161,7 +160,7 @@
             <Property name="text" type="java.lang.String" value="UPC"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="upcList">
+        <Component class="javax.swing.JComboBox" name="upcComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -169,7 +168,7 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String[] items= {&quot;0000&quot;,&quot;0001&quot;,&quot;0002&quot;};"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for (int i = 0; i&lt;items.length;i++){&#xa;    upcList.addItem(items[i]);&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="for (int i = 0; i&lt;items.length;i++){&#xa;    upcComboBox.addItem(items[i]);&#xa;}"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="quantityLabel">
@@ -177,7 +176,7 @@
             <Property name="text" type="java.lang.String" value="Quantity"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="quantityList">
+        <Component class="javax.swing.JComboBox" name="quantityComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="10">
@@ -325,11 +324,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="paymentLabel" min="-2" pref="81" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="paymentList" min="-2" pref="75" max="-2" attributes="0"/>
+                  <Component id="paymentComboBox" min="-2" pref="75" max="-2" attributes="0"/>
                   <EmptySpace pref="44" max="32767" attributes="0"/>
                   <Component id="amountLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="amountText" min="-2" pref="78" max="-2" attributes="0"/>
+                  <Component id="amountTextField" min="-2" pref="78" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -345,9 +344,9 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="paymentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="paymentList" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="paymentComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="amountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="amountText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="amountTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="payButton" min="-2" max="-2" attributes="0"/>
@@ -361,13 +360,14 @@
             <Property name="text" type="java.lang.String" value="Payment type"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="paymentList">
+        <Component class="javax.swing.JComboBox" name="paymentComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="4">
                 <StringItem index="0" value="Cash"/>
                 <StringItem index="1" value="Check"/>
-                <StringItem index="2" value="Credit"/>
+                <StringItem index="2" value="Mastercard"/>
+                <StringItem index="3" value="Visa"/>
               </StringArray>
             </Property>
           </Properties>
@@ -377,7 +377,7 @@
             <Property name="text" type="java.lang.String" value="Amount"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="amountText">
+        <Component class="javax.swing.JTextField" name="amountTextField">
         </Component>
         <Component class="javax.swing.JButton" name="payButton">
           <Properties>
@@ -397,7 +397,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="currentTime" min="-2" pref="177" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
