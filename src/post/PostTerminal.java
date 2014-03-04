@@ -10,6 +10,7 @@ import transaction.*;
 import java.util.ArrayList;
 import java.io.IOException;
 import payment.Payment;
+import post.Store;
 
 /**
  * Post terminal processes transactions in a file
